@@ -1,9 +1,19 @@
 import { useMemo } from "react";
-import { TableContainer, Table, TableHead, TableRow, TableBody, TableCell } from "@material-ui/core";
+import { makeStyles, TableContainer, Table, TableHead, TableRow, TableBody, TableCell } from "@material-ui/core";
+
+const useStyles = makeStyles({
+    root: {
+        marginBottom: "3%"
+    }
+});
 
 const QuizTable: React.FC<{quizzes: Quizzes}> = ({ quizzes }) => {
+
+    const classes = useStyles()
+
     return useMemo(() => (
-        < TableContainer>
+
+        <TableContainer className={classes.root}>
             <Table>
                 <TableHead>
                     <TableRow>
@@ -13,7 +23,7 @@ const QuizTable: React.FC<{quizzes: Quizzes}> = ({ quizzes }) => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {/* 親コンポーネント側で配列に変化した値を渡すと再描画しない(参照先が変わるから?) */}
+                    {/* 親コンポーネント側で配列に変形したオブジェクトを渡すとpropsの値が変化したかに関係なく再描画される(参照先が変わるから?) */}
                     {Object.values(quizzes).map((quiz) => {
                         return (
                             <TableRow>
@@ -21,12 +31,13 @@ const QuizTable: React.FC<{quizzes: Quizzes}> = ({ quizzes }) => {
                                 <TableCell>{quiz.answer_candidates.join(" ")}</TableCell>
                                 <TableCell>{quiz.answer_entity}</TableCell>
                             </TableRow>
-                        )
+                        );
                     })}
                 </TableBody>
             </Table>
         </TableContainer>
-    ), [quizzes]);
+    ), [quizzes, classes]);
+
 }
 
 export default QuizTable;
