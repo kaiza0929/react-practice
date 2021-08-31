@@ -5,7 +5,7 @@ type Quiz = {
     question: string;
     answer_candidates: string[];
     answer_entity: string;
-    correct?: boolean;
+    right?: boolean;
 }
 
 type Quizzes = {

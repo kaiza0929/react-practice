@@ -48,7 +48,7 @@ const EditPage: React.FC = () => {
                     setNewQuizState(init_new_quiz_state);
                 }
             }}>問題を追加</Button>
-            <QuizTable quizzes={quizzes_state} />
+            <QuizTable quizzes={quizzes_state} result={false} />
             <Box className={classes.linkbox}>
                 <Link href={window.URL.createObjectURL(new Blob([JSON.stringify(quizzes_state)], {type: "text/json"}))}>JSONをダウンロード</Link>
             </Box>

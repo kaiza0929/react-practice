@@ -7,7 +7,7 @@ const useStyles = makeStyles({
     }
 });
 
-const QuizTable: React.FC<{quizzes: Quizzes}> = ({ quizzes }) => {
+const QuizTable: React.FC<{quizzes: Quizzes, result: boolean}> = ({ quizzes, result }) => {
 
     const classes = useStyles()
 
@@ -18,7 +18,7 @@ const QuizTable: React.FC<{quizzes: Quizzes}> = ({ quizzes }) => {
                 <TableHead>
                     <TableRow>
                         <TableCell>問題文</TableCell>
-                        <TableCell>選択肢</TableCell>
+                        <TableCell>{result === true ? "あなたの回答" : "選択肢"}</TableCell>
                         <TableCell>正解</TableCell>
                     </TableRow>
                 </TableHead>
@@ -28,8 +28,13 @@ const QuizTable: React.FC<{quizzes: Quizzes}> = ({ quizzes }) => {
                         return (
                             <TableRow>
                                 <TableCell>{quiz.question}</TableCell>
-                                <TableCell>{quiz.answer_candidates.join(" ")}</TableCell>
+                                {result === false && (
+                                    <TableCell>{quiz.answer_candidates.join(" ")}</TableCell>
+                                )}
                                 <TableCell>{quiz.answer_entity}</TableCell>
+                                {result === true && (
+                                    <TableCell color="red">{quiz.right === true ?  quiz.answer_entity  + "(正解)" : quiz.answer_entity + "(不正解)"}</TableCell>
+                                )}
                             </TableRow>
                         );
                     })}
