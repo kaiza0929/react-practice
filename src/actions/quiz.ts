@@ -2,13 +2,12 @@
 import default_quizzes from "./../assets/default_quiz.json";
 
 export const SET_QUIZZES_ACTION_TYPE = "SET_QUIZZES";
-export const SET_RIGHT_OR_WRONG_ACTION_TYPE = "SET_RIGHT_OR_WRONG";
 export const NARROW_DOWN_ACTION_TYPE = "NARROW_DOWN";
 
-export const setQuizzes = (quizzes: Quizzes = default_quizzes, limit: number = 10) => {
+export const setQuizzes = (quizzes: Hash<Quiz> = default_quizzes, limit: number = 10) => {
 
     let ids = Object.keys(quizzes);
-    let selected_quizzes: Quizzes = {}
+    let selected_quizzes: Hash<Quiz> = {}
 
     for (let i = 1; i <= limit; i++) {
         const index = Math.floor(Math.random() * ids.length);
@@ -23,16 +22,6 @@ export const setQuizzes = (quizzes: Quizzes = default_quizzes, limit: number = 1
         }
     }
 
-}
-
-export const setRightOrWrong = (qid: string, right: boolean) => {
-    return {
-        type: SET_RIGHT_OR_WRONG_ACTION_TYPE,
-        payload: {
-            qid: qid,
-            right: right
-        }
-    }
 }
 
 export const narrowDown = (qid: string) => {

@@ -5,8 +5,6 @@ import { setQuizzes } from "./../../actions/quiz";
 
 const useStyles = makeStyles({
     root: {
-        width: "90%",
-        margin: "auto",
         textAlign: "center"
     },
     img: {
@@ -33,7 +31,7 @@ const IndexPage: React.FC = () => {
             <Button color="secondary" onClick={() => {
                 dispatch(setQuizzes());
                 history.push("/question");
-            }}>デフォルトクイズを開始</Button>
+            }}>サンプルクイズを開始</Button>
             <Button disabled={true}>クイズをインポート</Button>
             <Button onClick={() => history.push("/edit")}>クイズを作成</Button>
         </Box>

@@ -31,7 +31,7 @@ const EditPage: React.FC = () => {
     const init_new_quiz_state = {question: "", joined_answer_candidates: "", answer_entity: ""}
 
     const [new_quiz_state, setNewQuizState] = useState<{question: string, joined_answer_candidates: string, answer_entity: string}>(init_new_quiz_state);
-    const [quizzes_state, setQuizzesState] = useState<Quizzes>({});
+    const [quizzes_state, setQuizzesState] = useState<Hash<Quiz>>({});
 
     const setTextfieldValue = (e: React.ChangeEvent<HTMLInputElement>) => setNewQuizState({...new_quiz_state, [e.currentTarget.name]: e.currentTarget.value}); 
 
@@ -54,7 +54,7 @@ const EditPage: React.FC = () => {
                     setNewQuizState(init_new_quiz_state);
                 }
             }}>問題を追加</Button>
-            <QuizTable quizzes={quizzes_state} result={false} />
+            <QuizTable quizzes={quizzes_state} />
             <Box className={classes.linkbox}>
                 <DownloadLink style={{marginRight: "1%"}} href={window.URL.createObjectURL(new Blob([JSON.stringify(quizzes_state)], {type: "text/json"}))}>JSONをダウンロード</DownloadLink>
                 <Link to="/">トップに戻る</Link>

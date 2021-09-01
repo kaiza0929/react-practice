@@ -1,16 +1,21 @@
 import { useHistory } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { makeStyles, Box, Typography, Button } from "@material-ui/core";
+import { useSelector, useDispatch } from "react-redux";
+import { makeStyles, Box, Typography,  Button } from "@material-ui/core";
 import QuizTable from "./../reuses/QuizTable";
 import { RootState } from "./../../reducers";
+import { resetAnswers } from "./../../actions/answer";
 
 const useStyles = makeStyles({
     root: {
         margin: "auto",
-        width: "90%"
+        width: "90%",
     },
-    flexbox: {
-        display: "flex"
+    typography: {
+        textAlign: "center",
+        marginBottom: "1.5%"
+    },
+    buttonbox: {
+        textAlign: "center"
     }
 })
 
@@ -20,14 +25,19 @@ const ResultPage: React.FC = () => {
 
     const history = useHistory();
 
-    const quizzes = useSelector((state: RootState) => state.quizReducer.quizzes);
+    const quizzes = useSelector((state: RootState) => state.quizReducer);
+    const answers = useSelector((state: RootState) => state.answerReducer);
+    const dispatch = useDispatch();
 
     return (
         <Box className={classes.root}>
-            <QuizTable quizzes={quizzes} result={true} />
-            <Box className={classes.flexbox}>
-                <Typography>{Object.values(quizzes).length + "問中" + Object.values(quizzes).filter((quiz) => (quiz as Quiz).right === true).length + "問正解"}</Typography>
-                <Button onClick={() => history.push("/")}>トップに戻る</Button>
+            <Typography className={classes.typography}>結果</Typography>
+            <QuizTable quizzes={quizzes} answers={answers} />
+            <Box className={classes.buttonbox}>
+                <Button onClick={() => {
+                    dispatch(resetAnswers());
+                    history.push("/");
+                }}>トップに戻る</Button>
             </Box>
         </Box>
     )
