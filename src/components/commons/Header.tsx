@@ -13,7 +13,7 @@ const Header: React.FC = () => {
     return (
         <AppBar position="static" className={classes.root}>
             <Toolbar>
-                <Typography>React App</Typography>
+                <Typography>クイズメーカー</Typography>
             </Toolbar>
         </AppBar>
     )
