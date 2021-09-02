@@ -8,6 +8,7 @@ const useStyles = makeStyles({
     root: {
         margin: "auto",
         width: "90%",
+        marginBottom: "3%"
     },
     heading: {
         textAlign: "center",
