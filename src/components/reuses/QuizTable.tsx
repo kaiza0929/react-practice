@@ -30,7 +30,7 @@ const QuizTable: React.FC<{ quizzes: Hash<Quiz>, answers?: Hash<Answer> }> = ({ 
                             <TableRow>
                                 <TableCell>{quizzes[qid].question}</TableCell>
                                 <TableCell>{answers === undefined ? quizzes[qid].answer_candidates.join(" ") : answers[qid].player_answer}</TableCell>
-                                <TableCell>{quizzes[qid].answer_entity}</TableCell>
+                                <TableCell style={{color: answers !== undefined && quizzes[qid].answer_entity === answers[qid].player_answer ? "red" : "black"}}>{quizzes[qid].answer_entity}</TableCell>
                             </TableRow>
                         );
                     })}

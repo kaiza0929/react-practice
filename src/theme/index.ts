@@ -6,7 +6,7 @@ export const theme = createTheme({
             main: colors.red[800]
         },
         secondary: {
-            main: colors.blue[500]
+            main: colors.yellow[700]
         }
     },
     typography: {

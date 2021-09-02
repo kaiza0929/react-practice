@@ -2,23 +2,23 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { makeStyles, Box, Typography, Button, List, ListItem, ListItemText } from "@material-ui/core";
-import { RootState } from "./../../reducers";
-import { narrowDown } from "./../../actions/quiz";
-import { setAnswer } from "./../../actions/answer";
+import { RootState } from "../../reducers";
+import { narrowDown } from "../../actions/quiz";
+import { setAnswer } from "../../actions/answer";
+import LinkButton from "./../reuses/LinkButton";
 
 const useStyles = makeStyles({
     root: {
-        width: "90%",
-        margin: "auto",
         textAlign: "center",
-        background: "white"
+        margin: "auto",
+        width: "60%",
     },
     list_item_text: {
         textAlign: "center"
     }
 });
 
-const QuestionPage: React.FC = () => {
+const QuizPage: React.FC = () => {
 
     const classes = useStyles();
 
@@ -48,20 +48,20 @@ const QuestionPage: React.FC = () => {
                                     }
                                     
                                 }}>
-                                    <ListItemText>{candidate}</ListItemText>
+                                    <ListItemText key={candidate + "_text"}>{candidate}</ListItemText>
                                 </ListItem>
                             );
                         })}
                     </List>
-                    <Button disabled={enable_narrow_down_state === true ? false : true} onClick={() => {
+                    <Button color="secondary" disabled={enable_narrow_down_state === true ? false : true} onClick={() => {
                         dispatch(narrowDown(quizzes[quiz_index_state].qid));
                         setEnableNarrowDownState(false);
                     }}>50:50</Button>
                 </>
             )}
-            <Button onClick={() => history.push("/")}>中断</Button>
+            <LinkButton path="/" text="中止" />
         </Box>
     );
 }
 
-export default QuestionPage;
+export default QuizPage;
