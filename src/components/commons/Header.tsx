@@ -2,7 +2,7 @@ import { makeStyles, AppBar, Toolbar, Typography } from "@material-ui/core";
 
 const useStyles = makeStyles({
     root: {
-        marginBottom: "3%"
+        marginBottom: "3.5%"
     }
 });
 
@@ -13,7 +13,7 @@ const Header: React.FC = () => {
     return (
         <AppBar position="static" className={classes.root}>
             <Toolbar>
-                <Typography>React App</Typography>
+                <Typography>クイズメーカー</Typography>
             </Toolbar>
         </AppBar>
     )
