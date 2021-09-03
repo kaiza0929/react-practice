@@ -43,7 +43,7 @@ const QuizPage: React.FC = () => {
                                     dispatch(setAnswer({qid: quizzes[quiz_index_state].qid, player_answer: candidate}));
                                     if (quiz_index_state < quizzes.length - 1) {
                                         setQuizIndexState(quiz_index_state + 1);
-                                        setEnableNarrowDownState(false);
+                                        setEnableNarrowDownState(true);
                                     } else {
                                         history.push("/result");
                                     }
