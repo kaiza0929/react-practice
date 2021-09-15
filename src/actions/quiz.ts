@@ -15,7 +15,7 @@ export const setQuizzes = (quizzes: Hash<Quiz> = default_quizzes, limit: number)
 
     for (let i = 1; i <= limit; i++) {
         const index = Math.floor(Math.random() * ids.length);
-        selected_quizzes[quizzes[ids[index]].qid] = quizzes[ids[index]];
+        selected_quizzes[quizzes[ids[index]]] = quizzes[ids[index]];
         ids.splice(index, 1);
     }
 
